@@ -12,7 +12,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         AnchorPane anchorPane;
-        anchorPane = FXMLLoader.load(Main.class.getResource("/views/AutomataFXML.fxml"));
+        anchorPane = FXMLLoader.load(Main.class.getResource("/views/AutomataView.fxml"));
         Scene scene = new Scene(anchorPane);
         primaryStage.setScene(scene);
         primaryStage.setTitle("VAC Compiler");

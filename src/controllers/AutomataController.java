@@ -13,8 +13,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.StageStyle;
 
 import java.net.URL;
-import java.util.HashMap;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class AutomataController implements Initializable {
 
@@ -70,27 +69,63 @@ public class AutomataController implements Initializable {
         this.words = input.split("\n");
 
         for(int i=0;i<words.length;i++){
-            String[] withoutSpaces = words[i].split(" ");
+            String fixedString = fixString(words[i]);
+            System.out.println("FIXED STRING: "+ fixedString);
+            String[] withoutSpaces = fixedString.split(" ");
             for(int j=0;j<withoutSpaces.length;j++){
                 System.out.println("_______________________________________");
                 String currentWord = withoutSpaces[j];
-                String result = keywords.get(currentWord);
-                System.out.println("RESULT IN KEYWORDS: " + result);
-                if(result == null){
-                    result = symbols.get(currentWord);
-                    System.out.println("RESULT IN SYMBOLS: " + result);
+                if(!currentWord.isBlank() && !currentWord.isEmpty()){
+                    System.out.println("CURRENT WORD: " + currentWord);
+                    String result = keywords.get(currentWord);
+                    System.out.println("RESULT IN KEYWORDS: " + result);
                     if(result == null){
-                        evaluateRegex(currentWord);
-                        System.out.println("REGEX");
+                        result = symbols.get(currentWord);
+                        System.out.println("RESULT IN SYMBOLS: " + result);
+                        if(result == null){
+                            evaluateRegex(currentWord);
+                            System.out.println("REGEX");
+                        }
                     }
                 }
-
             }
         }
     }
 
     public void evaluateRegex(String word){
         //TODO Add regex
+    }
+
+    public String fixString(String input){
+        Set<String> keys = symbols.keySet();
+        Iterator<String> iterator = keys.iterator();
+        ArrayList<String> usedStrings = new ArrayList<>();
+        String result = "";
+
+        while(iterator.hasNext()){
+            boolean hasPassed = false;
+            String key = iterator.next();
+            String[] keyArray = key.split("");
+            for(int i=0;i<keyArray.length;i++){
+                if(usedStrings.contains(keyArray[i])){
+                    hasPassed = true;
+                }
+            }
+            if(input.contains(key) && !hasPassed){
+                int position = input.indexOf(key);
+                if(key.length()>1){
+                    int position2 = position + 1;
+                    result = input.substring(0,position) + " " + key + " " + input.substring(position2+1);
+                } else {
+                    result = input.substring(0,position) + " " + key + input.substring(position,position) + " " + input.substring(position + 1);
+                }
+
+                usedStrings.addAll(Arrays.asList(key.split("")));
+                input =  result;
+            }
+        }
+
+        return result;
     }
 
     public void fillKeywords(){

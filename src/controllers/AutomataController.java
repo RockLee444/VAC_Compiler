@@ -80,7 +80,6 @@ public class AutomataController implements Initializable {
         keywords.put("data","REGEX");
         keywords.put("enter","REGEX");
         keywords.put("fail","REGEX");
-        keywords.put("inherit","REGEX");
         keywords.put("ignore","REGEX");
         keywords.put("memorize","REGEX");
         keywords.put("output","REGEX");

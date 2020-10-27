@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
@@ -16,6 +17,10 @@
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#36383f" height="370.0" layoutX="554.0" layoutY="87.0" stroke="TRANSPARENT" strokeType="INSIDE" width="56.0" />
-      <Button fx:id="buttonPlay" layoutX="561.0" layoutY="100.0" mnemonicParsing="false" onMouseClicked="#beginVerification" prefHeight="25.0" prefWidth="28.0" style="-fx-background-color: BLACK;" />
+      <Button fx:id="buttonPlay" layoutX="561.0" layoutY="100.0" mnemonicParsing="false" onMouseClicked="#beginVerification" prefHeight="25.0" prefWidth="28.0" style="-fx-background-color: BLACK;">
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
    </children>
 </AnchorPane>

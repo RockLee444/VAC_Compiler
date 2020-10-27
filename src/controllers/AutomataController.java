@@ -13,14 +13,14 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.StageStyle;
 
 import java.net.URL;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 public class AutomataController implements Initializable {
 
     private String[] words;
-    private int currentState;
-    private int[] finalStates;
     private boolean finish;
+    private HashMap<String,String> keywords;
 
     @FXML
     private TextArea inputTextArea;
@@ -30,8 +30,8 @@ public class AutomataController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        this.currentState = 0;
-        this.finalStates = new int[]{12, 20, 23, 31, 46, 59, 62, 66, 67};
+        keywords = new HashMap<>();
+        fillKeywords();
         addImageToButton();
     }
 
@@ -60,15 +60,35 @@ public class AutomataController implements Initializable {
     }
 
     public void verifyInput(String input){
-        String[] words = input.split(" ");
-        if(words.length == 1){
-            words = input.split("\n");
-        }
         this.finish = false;
-        this.currentState = 0;
         int counter = 0;
         boolean isValid = false;
         String textAlert = "";
+        this.words = input.split("\n");
+
+        String result = keywords.get(input);
+        for(int i=0;i<words.length;i++){
+            System.out.println("__________________________________________________");
+            System.out.println("RESULT WORD " + words[i]);
+            System.out.println(keywords.get(words[i]));
+        }
+    }
+
+    public void fillKeywords(){
+        keywords.put("clear","REGEX");
+        keywords.put("condition","REGEX");
+        keywords.put("data","REGEX");
+        keywords.put("enter","REGEX");
+        keywords.put("fail","REGEX");
+        keywords.put("inherit","REGEX");
+        keywords.put("ignore","REGEX");
+        keywords.put("memorize","REGEX");
+        keywords.put("output","REGEX");
+        keywords.put("program","REGEX");
+        keywords.put("rnumber","REGEX");
+        keywords.put("stepto","REGEX");
+        keywords.put("stop","REGEX");
+        keywords.put("supersede","REGEX");
     }
 
     public void showAlert(String title, String content, AlertType alertType){

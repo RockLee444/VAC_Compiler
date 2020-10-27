@@ -110,23 +110,23 @@ public class AutomataController implements Initializable {
     }
 
     public void fillSymbols(){
-        keywords.put(";","Símbolo de término de línea de código");
-        keywords.put("#","Símbolo para agregar comentarios en una única línea de código");
-        keywords.put("{","Símbolo para identificar el inicio de una función o valores dentro de un arreglo");
-        keywords.put("}","Símbolo para identificar el final de una función o valores dentro de un arreglo");
-        keywords.put("(","Símbolo para identificar el inicio de los argumentos a agregar");
-        keywords.put(")","Símbolo para identificar el fin de los argumentos a agregar");
-        keywords.put("\"","Símbolo para identificar cadenas de texto");
-        keywords.put("+","Símbolo de concatenación y/o suma");
-        keywords.put("-","Símbolo de resta");
-        keywords.put("*","Símbolo de multiplicación");
-        keywords.put("/","Símbolo de división");
-        keywords.put("=","Símbolo de asignación de valores");
-        keywords.put(">=","Símbolo de condición, en caso de que valor sera mayor o igual a otro");
-        keywords.put("<=","Símbolo de condición, en caso de que valor sera menor o igual a otro");
-        keywords.put("==","Símbolo de comparación");
-        keywords.put(">","Símbolo de desigualdad entre dos valores, donde el valor primero es mayor al segundo");
-        keywords.put("<","Símbolo de desigualdad entre dos valores, donde el valor primero es menor al segundo");
+        symbols.put(";","Símbolo de término de línea de código");
+        symbols.put("#","Símbolo para agregar comentarios en una única línea de código");
+        symbols.put("{","Símbolo para identificar el inicio de una función o valores dentro de un arreglo");
+        symbols.put("}","Símbolo para identificar el final de una función o valores dentro de un arreglo");
+        symbols.put("(","Símbolo para identificar el inicio de los argumentos a agregar");
+        symbols.put(")","Símbolo para identificar el fin de los argumentos a agregar");
+        symbols.put("\"","Símbolo para identificar cadenas de texto");
+        symbols.put("+","Símbolo de concatenación y/o suma");
+        symbols.put("-","Símbolo de resta");
+        symbols.put("*","Símbolo de multiplicación");
+        symbols.put("/","Símbolo de división");
+        symbols.put("=","Símbolo de asignación de valores");
+        symbols.put(">=","Símbolo de condición, en caso de que valor sera mayor o igual a otro");
+        symbols.put("<=","Símbolo de condición, en caso de que valor sera menor o igual a otro");
+        symbols.put("==","Símbolo de comparación");
+        symbols.put(">","Símbolo de desigualdad entre dos valores, donde el valor primero es mayor al segundo");
+        symbols.put("<","Símbolo de desigualdad entre dos valores, donde el valor primero es menor al segundo");
     }
 
     public void showAlert(String title, String content, AlertType alertType){

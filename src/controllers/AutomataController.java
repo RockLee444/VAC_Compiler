@@ -69,16 +69,28 @@ public class AutomataController implements Initializable {
         String textAlert = "";
         this.words = input.split("\n");
 
-        String result = keywords.get(input);
         for(int i=0;i<words.length;i++){
-            System.out.println("__________________________________________________");
-            System.out.println("RESULT WORD " + words[i]);
-            String output = keywords.get(words[i]);
-            if(output == null){
-                output = symbols.get(words[i]);
+            String[] withoutSpaces = words[i].split(" ");
+            for(int j=0;j<withoutSpaces.length;j++){
+                System.out.println("_______________________________________");
+                String currentWord = withoutSpaces[j];
+                String result = keywords.get(currentWord);
+                System.out.println("RESULT IN KEYWORDS: " + result);
+                if(result == null){
+                    result = symbols.get(currentWord);
+                    System.out.println("RESULT IN SYMBOLS: " + result);
+                    if(result == null){
+                        evaluateRegex(currentWord);
+                        System.out.println("REGEX");
+                    }
+                }
+
             }
-            System.out.println("RESULT: " + output);
         }
+    }
+
+    public void evaluateRegex(String word){
+        //TODO Add regex
     }
 
     public void fillKeywords(){
@@ -110,11 +122,11 @@ public class AutomataController implements Initializable {
         keywords.put("*","Símbolo de multiplicación");
         keywords.put("/","Símbolo de división");
         keywords.put("=","Símbolo de asignación de valores");
+        keywords.put(">=","Símbolo de condición, en caso de que valor sera mayor o igual a otro");
+        keywords.put("<=","Símbolo de condición, en caso de que valor sera menor o igual a otro");
         keywords.put("==","Símbolo de comparación");
         keywords.put(">","Símbolo de desigualdad entre dos valores, donde el valor primero es mayor al segundo");
         keywords.put("<","Símbolo de desigualdad entre dos valores, donde el valor primero es menor al segundo");
-        keywords.put(">=","Símbolo de condición, en caso de que valor sera mayor o igual a otro");
-        keywords.put("<=","Símbolo de condición, en caso de que valor sera menor o igual a otro");
     }
 
     public void showAlert(String title, String content, AlertType alertType){

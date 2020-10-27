@@ -21,6 +21,7 @@ public class AutomataController implements Initializable {
     private String[] words;
     private boolean finish;
     private HashMap<String,String> keywords;
+    private HashMap<String,String> symbols;
 
     @FXML
     private TextArea inputTextArea;
@@ -31,7 +32,9 @@ public class AutomataController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         keywords = new HashMap<>();
+        symbols = new HashMap<>();
         fillKeywords();
+        fillSymbols();
         addImageToButton();
     }
 
@@ -70,7 +73,11 @@ public class AutomataController implements Initializable {
         for(int i=0;i<words.length;i++){
             System.out.println("__________________________________________________");
             System.out.println("RESULT WORD " + words[i]);
-            System.out.println(keywords.get(words[i]));
+            String output = keywords.get(words[i]);
+            if(output == null){
+                output = symbols.get(words[i]);
+            }
+            System.out.println("RESULT: " + output);
         }
     }
 
@@ -88,6 +95,26 @@ public class AutomataController implements Initializable {
         keywords.put("stepto","REGEX");
         keywords.put("stop","REGEX");
         keywords.put("supersede","REGEX");
+    }
+
+    public void fillSymbols(){
+        keywords.put(";","REGEX");
+        keywords.put("#","REGEX");
+        keywords.put("{","REGEX");
+        keywords.put("}","REGEX");
+        keywords.put("(","REGEX");
+        keywords.put(")","REGEX");
+        keywords.put("\"","REGEX");
+        keywords.put("+","REGEX");
+        keywords.put("-","REGEX");
+        keywords.put("*","REGEX");
+        keywords.put("/","REGEX");
+        keywords.put("=","REGEX");
+        keywords.put("==","REGEX");
+        keywords.put(">","REGEX");
+        keywords.put("<","REGEX");
+        keywords.put(">=","REGEX");
+        keywords.put("<=","REGEX");
     }
 
     public void showAlert(String title, String content, AlertType alertType){

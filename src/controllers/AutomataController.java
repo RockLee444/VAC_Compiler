@@ -82,39 +82,39 @@ public class AutomataController implements Initializable {
     }
 
     public void fillKeywords(){
-        keywords.put("clear","REGEX");
-        keywords.put("condition","REGEX");
-        keywords.put("data","REGEX");
-        keywords.put("enter","REGEX");
-        keywords.put("fail","REGEX");
-        keywords.put("ignore","REGEX");
-        keywords.put("memorize","REGEX");
-        keywords.put("output","REGEX");
-        keywords.put("program","REGEX");
-        keywords.put("rnumber","REGEX");
-        keywords.put("stepto","REGEX");
-        keywords.put("stop","REGEX");
-        keywords.put("supersede","REGEX");
+        keywords.put("clear","Palabra reservada del sistema");
+        keywords.put("condition","Palabra reservada del sistema");
+        keywords.put("data","Palabra reservada del sistema");
+        keywords.put("enter","Palabra reservada del sistema");
+        keywords.put("fail","Palabra reservada del sistema");
+        keywords.put("ignore","Palabra reservada del sistema");
+        keywords.put("memorize","Palabra reservada del sistema");
+        keywords.put("output","Palabra reservada del sistema");
+        keywords.put("program","Palabra reservada del sistema");
+        keywords.put("rnumber","Palabra reservada del sistema");
+        keywords.put("stepto","Palabra reservada del sistema");
+        keywords.put("stop","Palabra reservada del sistema");
+        keywords.put("supersede","Palabra reservada del sistema");
     }
 
     public void fillSymbols(){
-        keywords.put(";","REGEX");
-        keywords.put("#","REGEX");
-        keywords.put("{","REGEX");
-        keywords.put("}","REGEX");
-        keywords.put("(","REGEX");
-        keywords.put(")","REGEX");
-        keywords.put("\"","REGEX");
-        keywords.put("+","REGEX");
-        keywords.put("-","REGEX");
-        keywords.put("*","REGEX");
-        keywords.put("/","REGEX");
-        keywords.put("=","REGEX");
-        keywords.put("==","REGEX");
-        keywords.put(">","REGEX");
-        keywords.put("<","REGEX");
-        keywords.put(">=","REGEX");
-        keywords.put("<=","REGEX");
+        keywords.put(";","Símbolo de término de línea de código");
+        keywords.put("#","Símbolo para agregar comentarios en una única línea de código");
+        keywords.put("{","Símbolo para identificar el inicio de una función o valores dentro de un arreglo");
+        keywords.put("}","Símbolo para identificar el final de una función o valores dentro de un arreglo");
+        keywords.put("(","Símbolo para identificar el inicio de los argumentos a agregar");
+        keywords.put(")","Símbolo para identificar el fin de los argumentos a agregar");
+        keywords.put("\"","Símbolo para identificar cadenas de texto");
+        keywords.put("+","Símbolo de concatenación y/o suma");
+        keywords.put("-","Símbolo de resta");
+        keywords.put("*","Símbolo de multiplicación");
+        keywords.put("/","Símbolo de división");
+        keywords.put("=","Símbolo de asignación de valores");
+        keywords.put("==","Símbolo de comparación");
+        keywords.put(">","Símbolo de desigualdad entre dos valores, donde el valor primero es mayor al segundo");
+        keywords.put("<","Símbolo de desigualdad entre dos valores, donde el valor primero es menor al segundo");
+        keywords.put(">=","Símbolo de condición, en caso de que valor sera mayor o igual a otro");
+        keywords.put("<=","Símbolo de condición, en caso de que valor sera menor o igual a otro");
     }
 
     public void showAlert(String title, String content, AlertType alertType){

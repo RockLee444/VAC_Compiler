@@ -22,4 +22,4 @@ Proyecto de Lenguajes y Autómatas por equipo, en el que se realizó una propues
 ### RockLee444
 *   **clear**
 *   **condition**
-*   **inherit**
+*   **program**

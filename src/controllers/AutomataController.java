@@ -117,7 +117,7 @@ public class AutomataController implements Initializable {
                 int positionAux = 0;
                 while (!noMore) {
                     position = input.indexOf(key,positionAux);
-                    if (key.length() > 1) {
+                    if (key.length() > 1 && position >= 0) {
                         int position2 = position + 1;
                         result = input.substring(0, position) + " " + key + " " + input.substring(position2 + 1);
                     } else if (position > positionAux){

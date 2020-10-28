@@ -220,7 +220,6 @@ public class AutomataController implements Initializable {
         alert.getDialogPane().setContent(area);
         alert.getDialogPane().getContent().setStyle("-fx-background-color: transparent;");
         alert.setResizable(true);
-
         alert.initStyle(StageStyle.UTILITY);
         alert.showAndWait();
     }

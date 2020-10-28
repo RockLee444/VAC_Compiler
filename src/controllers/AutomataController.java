@@ -11,6 +11,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.StageStyle;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import java.net.URL;
 import java.util.*;
@@ -94,6 +96,13 @@ public class AutomataController implements Initializable {
 
     public void evaluateRegex(String word){
         //TODO Add regex
+        boolean isValid = false;
+        Pattern palabra = Pattern.compile("^[a-zA-Z]");
+        Matcher verificar = palabra.matcher(word);
+        if(verificar.matches()){
+            isValid = true;
+        }
+        //esto deberia hacer la comfirmacion, ya ustedes le cambian que si va a retornar algo o no.
     }
 
     public String fixString(String input){

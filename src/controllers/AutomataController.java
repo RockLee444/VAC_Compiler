@@ -100,7 +100,7 @@ public class AutomataController implements Initializable {
         Set<String> keys = symbols.keySet();
         Iterator<String> iterator = keys.iterator();
         ArrayList<String> usedStrings = new ArrayList<>();
-        String result = "";
+        String result = input;
 
         while(iterator.hasNext()){
             boolean hasPassed = false;

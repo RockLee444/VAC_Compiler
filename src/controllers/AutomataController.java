@@ -112,14 +112,23 @@ public class AutomataController implements Initializable {
                 }
             }
             if(input.contains(key) && !hasPassed){
-                int position = input.indexOf(key);
-                if(key.length()>1){
-                    int position2 = position + 1;
-                    result = input.substring(0,position) + " " + key + " " + input.substring(position2+1);
-                } else {
-                    result = input.substring(0,position) + " " + key + input.substring(position,position) + " " + input.substring(position + 1);
+                boolean noMore = false;
+                int position = 0;
+                int positionAux = 0;
+                while (!noMore) {
+                    position = input.indexOf(key,positionAux);
+                    if (key.length() > 1) {
+                        int position2 = position + 1;
+                        result = input.substring(0, position) + " " + key + " " + input.substring(position2 + 1);
+                    } else if (position > positionAux){
+                        result = input.substring(0, position) + " " + key + input.substring(position, position) + " " + input.substring(position + 1);
+                    }else{
+                        noMore=true;
+                    }
+                    positionAux=position+2;
+                    position=0;
+                    input =  result;
                 }
-
                 usedStrings.addAll(Arrays.asList(key.split("")));
                 input =  result;
             }

@@ -122,7 +122,7 @@ public class AutomataController implements Initializable {
         //TODO Add regex
         boolean isValid = false;
         String result = "";
-        Pattern input = Pattern.compile("(^[a-zA-Z_]+[0-9]*)$");
+        Pattern input = Pattern.compile("(^[a-zA-Z_]+[a-zA-Z0-9_]*)$");
         Matcher verified = input.matcher(word);
         if(verified.find()){
             isValid = true;

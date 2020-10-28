@@ -16,6 +16,7 @@ import java.util.regex.Pattern;
 
 import java.net.URL;
 import java.util.*;
+import java.util.stream.Stream;
 
 public class AutomataController implements Initializable {
 
@@ -107,7 +108,20 @@ public class AutomataController implements Initializable {
 
     public String fixString(String input){
         Set<String> keys = symbols.keySet();
-        Iterator<String> iterator = keys.iterator();
+        Stream<String> sortedKeys = keys.stream().sorted(new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                if(o1.length() > o2.length()){
+                    return -1;
+                } else if(o1.length() < o2.length()) {
+                    return 1;
+                } else {
+                    return 0;
+                }
+            }
+        });
+
+        Iterator<String> iterator = sortedKeys.iterator();
         ArrayList<String> usedStrings = new ArrayList<>();
         String result = input;
 
@@ -126,7 +140,7 @@ public class AutomataController implements Initializable {
                 int positionAux = 0;
                 while (!noMore) {
                     position = input.indexOf(key,positionAux);
-                    if (key.length() > 1) {
+                    if (key.length() > 1 && position >= 0) {
                         int position2 = position + 1;
                         result = input.substring(0, position) + " " + key + " " + input.substring(position2 + 1);
                     } else if (position > positionAux){

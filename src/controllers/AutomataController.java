@@ -68,36 +68,47 @@ public class AutomataController implements Initializable {
         AlertType alertType;
         this.finish = false;
         int counter = 0;
+        char aux= ' ',aux2 = ' ';
         boolean isValid = false;
         String textAlert = "";
+        boolean isArgument1 = false,isArgument2 = false;
         this.words = input.split("\n");
 
         for(int i=0;i<words.length;i++){
             String fixedString = fixString(words[i]);
-            System.out.println("FIXED STRING: "+ fixedString);
             String[] withoutSpaces = fixedString.split(" ");
             for(int j=0;j<withoutSpaces.length;j++){
-                System.out.println("_______________________________________");
+                isArgument1 = false;
+                isArgument2 = false;
                 String currentWord = withoutSpaces[j];
                 if(!currentWord.isBlank() && !currentWord.isEmpty()){
-                    System.out.println("CURRENT WORD: " + currentWord);
-                    textAlert += currentWord + " - ";
                     String result = keywords.get(currentWord);
-                    System.out.println("RESULT IN KEYWORDS: " + result);
                     if(result == null){
+                        if(currentWord.charAt(0) == '\"'){
+                            aux = currentWord.charAt(0);
+                            isArgument1 = true;
+                        }
+                        if(currentWord.charAt(currentWord.length()-1) == '\"'){
+                            aux2 = currentWord.charAt(currentWord.length()-1);
+                            isArgument2 = true;
+                        }
                         result = symbols.get(currentWord);
-                        System.out.println("RESULT IN SYMBOLS: " + result);
                         if(result == null){
-                            evaluateRegex(currentWord);
-                            System.out.println("REGEX");
-                            textAlert += "aquivaloderegex" + "\n";
+                            if(isArgument1){
+                                textAlert += "\" " + " - " + symbols.get("" + aux) + "\n";
+                            }
+                            textAlert += currentWord + " - "  + evaluateRegex(currentWord) + "\n";
+                            if(isArgument2){
+                                textAlert += "\" " + " - " + symbols.get("" + aux2) + "\n";
+                            }
+
                         }
                         else {
-                            textAlert += result + "\n";
+                            textAlert += currentWord + " - "  + result + "\n";
                         }
                     }
                     else {
-                        textAlert += result + "\n";
+                        textAlert += currentWord + " - "  + result + "\n";
                     }
                 }
             }
@@ -107,26 +118,27 @@ public class AutomataController implements Initializable {
         showAlert("INFORMATION", textAlert, alertType);
     }
 
-    public void evaluateRegex(String word){
+    public String evaluateRegex(String word){
         //TODO Add regex
         boolean isValid = false;
+        String result = "";
         Pattern input = Pattern.compile("(^[a-zA-Z_]+[0-9]*)$");
         Matcher verified = input.matcher(word);
         if(verified.find()){
             isValid = true;
-            System.out.println("Es un identificador valido");
+            result =  " es un identificador válido";
         }else{
             boolean isValid2 = false;
             Pattern palabra2 = Pattern.compile("([0-9]+|(^\"[\\w|\\W|\\d|\\D]*[\"]))$");
             Matcher verified2 = palabra2.matcher(word);
             if(verified2.find()) {
                 isValid2 = true;
-                System.out.println("Es un argumento valido");
+                result = " es un argumento válido";
             }else{
-                System.out.println("Argumento invalido, ingrese otro caracter");
+                result = " tiene una combinación de caracteres incorrecta.";
             }
         }
-        //esto deberia hacer la comfirmacion, ya ustedes le cambian que si va a retornar algo o no.
+        return result;
     }
 
     public String fixString(String input){
@@ -153,7 +165,7 @@ public class AutomataController implements Initializable {
             String key = iterator.next();
             String[] keyArray = key.split("");
             for(int i=0;i<keyArray.length;i++){
-                if(usedStrings.contains(keyArray[i])){
+                if(usedStrings.contains(keyArray[i]) || keyArray[i].equals("\"")){
                     hasPassed = true;
                 }
             }
@@ -166,7 +178,7 @@ public class AutomataController implements Initializable {
                     if (key.length() > 1 && position >= 0) {
                         int position2 = position + 1;
                         result = input.substring(0, position) + " " + key + " " + input.substring(position2 + 1);
-                    } else if (position > positionAux){
+                    } else if (position >= positionAux){
                         result = input.substring(0, position) + " " + key + input.substring(position, position) + " " + input.substring(position + 1);
                     }else{
                         noMore=true;

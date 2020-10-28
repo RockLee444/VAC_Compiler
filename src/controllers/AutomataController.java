@@ -98,10 +98,13 @@ public class AutomataController implements Initializable {
     public void evaluateRegex(String word){
         //TODO Add regex
         boolean isValid = false;
-        Pattern palabra = Pattern.compile("^[a-zA-Z]");
-        Matcher verificar = palabra.matcher(word);
-        if(verificar.matches()){
+        Pattern palabra = Pattern.compile("[a-zA-Z]");
+        Matcher verified = palabra.matcher(word);
+        if(verified.find()){
             isValid = true;
+            System.out.println("Es un identificador valido");
+        }else{
+            System.out.println("Identificador invalido, ingrese otro");
         }
         //esto deberia hacer la comfirmacion, ya ustedes le cambian que si va a retornar algo o no.
     }

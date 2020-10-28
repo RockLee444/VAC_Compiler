@@ -65,6 +65,7 @@ public class AutomataController implements Initializable {
     }
 
     public void verifyInput(String input){
+        AlertType alertType;
         this.finish = false;
         int counter = 0;
         boolean isValid = false;
@@ -80,6 +81,7 @@ public class AutomataController implements Initializable {
                 String currentWord = withoutSpaces[j];
                 if(!currentWord.isBlank() && !currentWord.isEmpty()){
                     System.out.println("CURRENT WORD: " + currentWord);
+                    textAlert += currentWord + " - ";
                     String result = keywords.get(currentWord);
                     System.out.println("RESULT IN KEYWORDS: " + result);
                     if(result == null){
@@ -88,11 +90,21 @@ public class AutomataController implements Initializable {
                         if(result == null){
                             evaluateRegex(currentWord);
                             System.out.println("REGEX");
+                            textAlert += "aquivaloderegex" + "\n";
                         }
+                        else {
+                            textAlert += result + "\n";
+                        }
+                    }
+                    else {
+                        textAlert += result + "\n";
                     }
                 }
             }
         }
+
+        alertType = AlertType.INFORMATION;
+        showAlert("INFORMATION", textAlert, alertType);
     }
 
     public void evaluateRegex(String word){
@@ -200,7 +212,15 @@ public class AutomataController implements Initializable {
         Alert alert = new Alert(alertType);
         alert.setHeaderText(null);
         alert.setTitle(title);
-        alert.setContentText(content);
+
+        TextArea area = new TextArea(content);
+        area.setWrapText(true);
+        area.setEditable(false);
+
+        alert.getDialogPane().setContent(area);
+        alert.getDialogPane().getContent().setStyle("-fx-background-color: transparent;");
+        alert.setResizable(true);
+
         alert.initStyle(StageStyle.UTILITY);
         alert.showAndWait();
     }
